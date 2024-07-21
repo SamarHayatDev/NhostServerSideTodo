@@ -1,5 +1,6 @@
+import Todos from "./todo/todos";
 const Home = () => {
-  return <div>TEST</div>;
+  return <div><Todos /></div>;
 };
 
 export default Home;
