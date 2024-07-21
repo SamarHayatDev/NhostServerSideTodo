@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import React from "react";
-import { useAccessToken, useSignInEmailPasswordless } from "@nhost/nextjs";
 import { nhost } from "../../lib/nhost";
 
 const Login = () => {
@@ -10,9 +9,15 @@ const Login = () => {
   const [nError, setnError] = useState("");
 
   const handleMagicLinkLogin = async () => {
-    const res = await nhost.auth.signIn({ email: email });
-    if (res.error) {
-      setnError("Eror Found");
+    try {
+      const res = await nhost.auth.signIn({ email: email });
+      if (res.error) {
+        setnError("Error Found");
+      } else {
+        setMessage("Check your email for the magic link!");
+      }
+    } catch (error) {
+      setnError("An unexpected error occurred.");
     }
   };
 
@@ -46,8 +51,10 @@ const Login = () => {
             Send Magic Link
           </button>
         </div>
-        {message && <p className="mt-4 text-green-500 text-sm">{message}</p>}
-        {nError && <p className="mt-4 text-red-500 text-sm">{nError}</p>}
+        <p className={`mt-4 text-sm ${message ? 'text-green-500' : nError ? 'text-red-500' : 'hidden'}`}>
+          {message || nError}
+        </p>
+
       </div>
     </div>
   );
