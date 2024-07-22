@@ -1,6 +1,10 @@
-import Todos from "./todo/todos";
+import demotodo from "./demotodo/page";
 const Home = () => {
-  return <div><Todos /></div>;
+  return (
+    <>
+      <h1>Hello</h1>
+    </>
+  );
 };
 
 export default Home;
