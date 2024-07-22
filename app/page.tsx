@@ -1,8 +1,8 @@
-import demotodo from "./demotodo/page";
+import Demotodo from "./demotodo/page";
 const Home = () => {
   return (
     <>
-      <h1>Hello</h1>
+      <Demotodo />
     </>
   );
 };
